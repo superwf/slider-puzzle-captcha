@@ -1,0 +1,57 @@
+@import "animate/base.less";
+@import "animate/flash.less";
+body {
+  overflow: hidden;
+}
+canvas, .slider, .handler {
+  border: 1px solid black;
+}
+.slider {
+  width: 600px;
+  height: 50px;
+  position: relative;
+  > .handler {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 50%;
+  }
+}
+
+.puzzle-img {
+  position: relative;
+  height: 300px;
+  width: 600px;
+  overflow: hidden;
+  // background-color: black;
+  img {
+    position: absolute;
+    &.bg {
+      z-index: 3;
+    }
+    &.puzzle {
+      opacity: 0;
+      z-index: 2;
+    }
+    &.puzzle-bg {
+      opacity: 0;
+      z-index: 1;
+    }
+  }
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 60%);
+    left: -600px;
+    content: '';
+  }
+  &.ok {
+    &:before {
+      transition: left 1s linear;
+      z-index: 4;
+      left: 600px;
+    }
+  }
+}
