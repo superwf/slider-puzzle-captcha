@@ -1,9 +1,14 @@
-import random from 'lodash/random'
+// import random from 'lodash/random'
+const random = number => Math.random() * number
 
 // 生成随机颜色
 // return 由三个1至255之间的数据组成的数组
 // 例如 [3, 42, 223]
-const randomRgbDigit = () => [random(255), random(255), random(255)]
+const randomRgbDigit = () => [
+  Math.ceil(random(255)),
+  Math.ceil(random(255)),
+  Math.ceil(random(255)),
+]
 
 // param rgbDigit 由三个1-255之间的数字组成的数组
 // 例如[3, 42, 223]

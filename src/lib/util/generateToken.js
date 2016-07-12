@@ -1,4 +1,4 @@
 const token = () => {
-  return Math.random().toString(36).slice(2)
+  return (Date.now() * Math.random()).toString(36).replace('.', '')
 }
 export default token

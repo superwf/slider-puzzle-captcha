@@ -1,10 +1,5 @@
 import redis from 'redis'
 import config from '../../config'
-import {isProduction} from '../util/env'
-
-const remove = () => {
-  client.del(key)
-}
 
 const createStore = () => {
   const client = redis.createClient()
@@ -17,13 +12,15 @@ const createStore = () => {
     get: key => {
       return new Promise((resolve, reject) => {
         client.get(key, (err, result) => {
-          if (err || result === null) {
-            reject() 
+          if (err) {
+            reject(err)
+          } else if (result === null) {
+            reject(null)
           } else {
             try {
               resolve(JSON.parse(result))
             } catch (e) {
-              reject(result)
+              resolve(result)
             }
           }
         })

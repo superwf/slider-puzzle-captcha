@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm test -- --watch"
+    "test": "cross-env BABEL_ENV=commonjs mocha test/lib/ test/server --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch",
+    "test:client": "cross-env NODE_ENV=test karma start"
   },
   "keywords": [
     "captcha",
@@ -16,19 +17,20 @@
   "author": "superwf",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "canvas": "^1.4.0",
     "co-body": "^4.2.0",
     "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.0.0",
-    "koa": "^2.0.0",
-    "koa-logger": "^1.3.0",
-    "koa-router": "^7.0.1",
-    "koa-static": "^2.0.0",
     "lodash": "^4.13.1",
+    "microevent": "^1.0.0",
+    "morgan": "^1.7.0",
     "redis": "^2.6.2"
   },
   "devDependencies": {
+    "autoprefixer": "^6.3.7",
     "babel": "^6.5.2",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
@@ -50,9 +52,17 @@
     "gulp-eslint": "^3.0.1",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "^1.2.4",
+    "gulp-pngmin": "^0.1.4",
+    "gulp-postcss": "^6.1.1",
     "gulp-pug": "^3.0.3",
-    "koa-refresh": "0.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "karma": "^1.1.0",
+    "karma-browserify": "^5.0.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-mocha": "^1.1.1",
     "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "watchify": "^3.7.0",
     "webpack": "^1.13.1"
   }
 }

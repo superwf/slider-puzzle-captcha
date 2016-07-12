@@ -1,0 +1,53 @@
+.operation {
+  // display: flex;
+  text-align: left;
+  position: absolute;
+  width: @containerWith;
+  bottom: 0;
+  > .track {
+    border: @containerBorder;
+    width: @innerWidth;
+    display: inline-block;
+    position: relative;
+    background-color: #e3d9cd;
+    height: 28px;
+    border-radius: 14px;
+    > .slider {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      border-radius: 50%;
+      background-image: data-uri('../img/slider-bg.png');
+      top: -6px;
+      left: 0;
+      &.move {
+        background-position: 0 84px;
+      }
+    }
+    > .hint {
+      color: #7c7c7c;
+      text-align: center;
+      line-height: 28px;
+    }
+  }
+  > .tip {
+    background-image: data-uri('../img/validate-result.png');
+    background-repeat: no-repeat;
+    background-position: 0 -52px;
+    width: 26px;
+    height: 26px;
+    margin: 0 8px -8px 8px;
+    display: inline-block;
+    &.disable {
+      background-position: 0 -78px;
+    }
+    &.fail {
+      background-position: 0 -26px;
+    }
+    // may be server error
+    &.broken {
+      background-position: 0 -104px;
+    }
+  }
+}

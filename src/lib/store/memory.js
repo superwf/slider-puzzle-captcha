@@ -19,7 +19,7 @@ export default {
     if (val !== undefined) {
       return Promise.resolve(val)
     }
-    return Promise.reject()
+    return Promise.reject(null)
   },
 
   remove,

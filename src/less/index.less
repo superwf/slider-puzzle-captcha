@@ -1,57 +1,160 @@
+@import "varible.less";
 @import "animate/base.less";
 @import "animate/flash.less";
+@import "animate/fadeIn.less";
+
+
+// 图片区域的padding
+@imagePadding: 15px;
+
+// 图片下面的刷新按钮区域高度
+@controllHeight: 20px;
+
+@tipWidth: 46px;
+
+// 图片与滑块区域的宽度
+@innerWidth: @bgWidth + @imagePadding + @imagePadding;
+
+@containerWith: @bgWidth + @tipWidth + @imagePadding * 2;
+
+@containerBorder: 1px solid #d1bba8;
+
+// body 中的样式都是开发用的，实际生产中不用
 body {
-  overflow: hidden;
-}
-canvas, .slider, .handler {
-  border: 1px solid black;
-}
-.slider {
-  width: 600px;
-  height: 50px;
-  position: relative;
-  > .handler {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    border-radius: 50%;
+  // overflow: hidden;
+  form {
+    display: block;
+    margin: 100px auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    width: @bgWidth + 150px;
+    .form-group {
+      text-align: center;
+      padding: 10px 0;
+      label {
+        display: inline-block;
+        text-align: left;
+        width: 30%;
+      }
+      input {
+        width: 60%;
+      }
+      &:after {
+        content: '';
+        display: table;
+      }
+    }
   }
 }
 
-.puzzle-img {
+.slider-puzzle {
+  width: @containerWith;
+  height: 30px;
   position: relative;
-  height: 300px;
-  width: 600px;
-  overflow: hidden;
-  // background-color: black;
-  img {
-    position: absolute;
-    &.bg {
-      z-index: 3;
-    }
-    &.puzzle {
-      opacity: 0;
-      z-index: 2;
-    }
-    &.puzzle-bg {
-      opacity: 0;
-      z-index: 1;
-    }
+  @import "track.less";
+  user-select: none;
+  &:focus {
+    outline: none;
   }
-  &:before {
+  .image-container {
+    opacity: 0;
+    display: none;
+    overflow: hidden;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 60%);
-    left: -600px;
-    content: '';
+    top: -@bgHeight - @imagePadding * 2 - @controllHeight - 13px;
+    background-color: #f1eae0;
+    border: @containerBorder;
+    border-radius: 10px;
+    width: @innerWidth;
+    height: @bgHeight + @controllHeight + @imagePadding * 2;
+    .images {
+      top: @imagePadding;
+      left: @imagePadding;
+      position: absolute;
+      overflow: hidden;
+      width: @bgWidth;
+      height: @bgHeight;
+      background-image: data-uri('../img/loading.png');
+      background-repeat: no-repeat;
+      img {
+        &.bg, &.puzzle, &.puzzle-bg {
+          position: absolute;
+          opacity: 0;
+        }
+        &.bg {
+          z-index: @baseZindex + 3;
+          opacity: 1;
+        }
+        &.puzzle {
+          z-index: @baseZindex + 2;
+        }
+        &.puzzle-bg {
+          z-index: @baseZindex + 1;
+        }
+      }
+      &:before {
+        z-index: @baseZindex + 5;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(-45deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 60%);
+        left: -@bgWidth;
+        content: '';
+      }
+      .notify {
+        color: #888;
+        width: @bgWidth;
+        text-align: center;
+        line-height: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        position: absolute;
+        bottom: -20px;
+        z-index: @baseZindex + 4;
+        transition: bottom 0.2s linear;
+        &.active {
+          bottom: 0;
+        }
+        .success {
+          color: #4dc674;
+        }
+        .error {
+          color: red;
+        }
+      }
+    }
+    .controll {
+      position: absolute;
+      bottom: 10px;
+      left: @imagePadding;
+      .refresh {
+        width: 14px;
+        height: 14px;
+        background-image: data-uri('../img/refresh.png');
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
+        &:hover {
+          background-position: 0px -14px;
+        }
+      }
+    }
+    &.fadeIn {
+      display: block;
+      opacity: 1;
+    }
   }
   &.ok {
-    &:before {
-      transition: left 1s linear;
-      z-index: 4;
-      left: 600px;
+    .images {
+      &:before {
+        transition: left 1s linear;
+        z-index: @baseZindex + 4;
+        left: 600px;
+      }
+    }
+    > .operation {
+      > .tip {
+        background-position: 0 0px;
+      }
     }
   }
 }

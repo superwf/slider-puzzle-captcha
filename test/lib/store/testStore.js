@@ -20,7 +20,7 @@ const testStore = store => () => {
 
   it('get not exist val', done => {
     store.get('xxxxxxxxxx').then(() => {}, err => {
-      expect(err).toBe(undefined)
+      expect(err).toBeFalsy()
       done()
     })
   })
@@ -44,7 +44,7 @@ const testStore = store => () => {
       expect(name).toBe('www')
       store.remove('name')
       store.get('name').then(() => {}, err => {
-        expect(err).toBe(undefined)
+        expect(err).toBe(null)
         done()
       })
     })
@@ -57,7 +57,7 @@ const testStore = store => () => {
     })
     store.clear().then(() => {
       store.get(key).catch(err => {
-        expect(err).toBe(undefined)
+        expect(err).toBe(null)
         done()
       })
     })

@@ -39,7 +39,7 @@ export default position => {
     ctx.lineTo(x + puzzleSide, y + puzzleSide)
 
     if (line3Arc) {
-      let x1 = x + puzzleSide
+      // let x1 = x + puzzleSide
       let y1 = y + puzzleSide
       ctx.lineTo(x + puzzleSide / 2 + slotRadius, y1)
       ctx.quadraticCurveTo(

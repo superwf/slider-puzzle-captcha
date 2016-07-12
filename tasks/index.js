@@ -1,20 +1,22 @@
 import config from '../src/config'
 import gulp from 'gulp'
-import Babelify from 'babelify'
+// import Babelify from 'babelify'
 import gulpLoadPlugins from 'gulp-load-plugins'
-import exorcist from 'exorcist'
+// import exorcist from 'exorcist'
 import browserify from 'browserify'
 import fs from 'fs'
+import autoprefixer from 'autoprefixer'
+
 const $ = gulpLoadPlugins()
 
 const port = config.port
 
-const babelify = Babelify.configure({
-  presets: ['es2015', 'react']
-})
+// const babelify = Babelify.configure({
+//   presets: ['es2015', 'react']
+// })
 
 const srcPath = {
-  less: 'src/less/*.less',
+  less: 'src/less/**/*.less',
   view: 'src/view/index.jade',
   client: 'src/client/**/*.js',
   lib: 'src/lib/**/*.js',
@@ -31,11 +33,18 @@ gulp.task('view', () => {
   .pipe(gulp.dest(destPath.root))
 })
 
-gulp.task('less', () => {
-  return gulp.src(srcPath.less)
+const lessTask = () => {
+  fs.writeFileSync('./src/less/varible.less', `@bgWidth: ${config.bgWidth}px;\n@bgHeight: ${config.bgHeight}px;\n@baseZindex: 100;`)
+
+  return gulp.src('src/less/index.less')
+  .pipe($.sourcemaps.init())
   .pipe($.less())
+  .pipe($.postcss([autoprefixer({browsers: ['last 2 versions']})]))
+  .pipe($.sourcemaps.write())
   .pipe(gulp.dest(destPath.root))
-})
+}
+
+gulp.task('less', lessTask)
 
 // 有时上一个进程没有正确关闭，运行gulp kill清理
 gulp.task('kill', () => {
@@ -57,11 +66,14 @@ gulp.task('lint', () => {
 })
 
 const browserifyTask = () => {
-
-  browserify('src/client/index.js', {debug: true})
-  .transform('babelify', {presets: ['es2015']})
-  .bundle()
-  .pipe(fs.createWriteStream(destPath.root + '/index.js'))
+  try {
+    browserify('src/client/index.js', {debug: true})
+    .transform('babelify', {presets: ['es2015']})
+    .bundle()
+    .pipe(fs.createWriteStream(destPath.root + '/index.js'))
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 gulp.task('browserify', browserifyTask)
@@ -72,10 +84,7 @@ gulp.task('default', ['browserify', 'view', 'less', 'kill'], () => {
 
   const browserSync = require('browser-sync').create()
   gulp.watch(srcPath.less).on('change', () => {
-    gulp.src(srcPath.less)
-    .pipe($.less())
-    .pipe(gulp.dest(destPath.root))
-    .pipe(browserSync.reload({stream: true}))
+    lessTask().pipe(browserSync.reload({stream: true}))
   })
 
   gulp.watch(srcPath.view).on('change', () => {

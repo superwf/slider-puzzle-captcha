@@ -1,37 +1,26 @@
-import fetch from 'isomorphic-fetch'
-import config from '../config'
-import Slider from './slider'
+// import config from '../config'
+// import once from 'lodash/once'
 
+import 'isomorphic-fetch'
+import 'babel-polyfill'
 import Promise from 'es6-promise'
+// import sliderPuzzle from './sliderPuzzle'
+import initDomTree from './initDomTree'
+import puzzle from './puzzle'
+import slider from './slider'
 Promise.polyfill()
 
+import './event/reset'
+import './event/enable'
+import './event/disable'
+import './event/validate'
+import './event/notify'
+import './event/refresh'
+import './event/error'
+
 window.addEventListener('load', () => {
-
-  fetch('/captcha').then((res) => {
-    // console.log(res.json().then)
-    res.json().then(data => {
-      const imgContainer = document.querySelector('.puzzle-img')
-
-      let i = document.createElement('img')
-      i.src = data.bg
-      i.classList.add('bg')
-      imgContainer.appendChild(i)
-
-
-      i = document.createElement('img')
-      i.src = data.puzzle
-      i.classList.add('puzzle')
-      imgContainer.appendChild(i)
-
-      i = document.createElement('img')
-      i.classList.add('puzzle-bg')
-      i.src = data.puzzledBg
-      imgContainer.appendChild(i)
-
-      const slider = document.querySelector('.slider')
-      Slider(slider, data.token)
-    }, err => {
-      console.log(err)
-    })
-  })
+  const root = document.querySelector('.slider-puzzle')
+  initDomTree(root)
+  puzzle(root)
+  slider()
 })
