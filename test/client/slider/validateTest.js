@@ -49,7 +49,7 @@ describe('slider', () => {
     spyOn(emitter, 'emit')
 
     validate({token: 'abc', x: '123'}).then(() => {
-    }, err => {
+    }, () => {
       expect(emitter.emit.calls[0].arguments).toInclude('server:error')
       expect.restoreSpies()
       done()

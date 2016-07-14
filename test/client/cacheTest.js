@@ -1,5 +1,5 @@
 import cache from '../../src/client/cache'
-import expect, {createSpy} from 'expect'
+import expect from 'expect'
 
 describe('cache', () => {
   it('set', () => {

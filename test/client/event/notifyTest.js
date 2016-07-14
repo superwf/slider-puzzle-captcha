@@ -2,7 +2,7 @@ import '../../../src/client/event/notify'
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
 import emitter from '../../../src/client/emitter'
-import expect, {spyOn} from 'expect'
+import expect from 'expect'
 
 describe('event', () => {
   it('notify', () => {

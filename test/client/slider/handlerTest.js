@@ -1,10 +1,9 @@
 import {startFunc, onHover, offHover} from '../../../src/client/slider/handler'
-import expect, {spyOn} from 'expect'
+import expect from 'expect'
 import initDomTree from '../../../src/client/initDomTree'
 import insertImg from '../../../src/client/puzzle/insertImg'
 import cache from '../../../src/client/cache'
 import config from '../../../src/config'
-import emitter from '../../../src/client/emitter'
 import fakeFetch from '../fakeFetch'
 
 describe('slider', function() {
@@ -49,7 +48,7 @@ describe('slider', function() {
     expect(slider.classList.contains('move')).toBe(true)
 
     expect(slider.style.left).toBe('')
-    
+
     const moveEvt = new MouseEvent('mousemove', {clientX: 150})
     document.dispatchEvent(moveEvt)
     expect(slider.style.left).toBe('50px')

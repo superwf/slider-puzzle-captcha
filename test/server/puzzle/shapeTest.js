@@ -6,8 +6,8 @@ import Canvas from 'canvas'
 
 describe('puzzle/shape', () => {
   it('shape generate func and func receive param ctx and callback', () => {
-    const config = position()
-    let shapeFunc = shape(config)
+    const pos = position()
+    let shapeFunc = shape(pos)
 
     const canvas = new Canvas(config.bgWidth, config.bgHeight)
     const ctx = canvas.getContext('2d')

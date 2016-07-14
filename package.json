@@ -1,7 +1,10 @@
 {
   "name": "slider-puzzle-captcha",
   "version": "0.1.0",
-  "repository": "https://github.com/superwf/slider-puzzle-captcha",
+  "repository": {
+    "url": "https://github.com/superwf/slider-puzzle-captcha.git",
+    "type": "git"
+  },
   "description": "drag puzzle to validate captcha",
   "main": "es/client/export.js",
   "less": "src/less/index.less",
@@ -19,6 +22,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"
   },
   "keywords": [
+    "puzzle",
     "captcha",
     "slider"
   ],
