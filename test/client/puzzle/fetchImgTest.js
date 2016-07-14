@@ -22,6 +22,7 @@ describe('fetchImg', () => {
   })
 
   it('fetch', done => {
+    // expect(cache.enable).toBe(false)
     fetchImg().then(data => {
       expect('bg' in data).toBe(true)
       expect('puzzle' in data).toBe(true)

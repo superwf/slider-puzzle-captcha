@@ -2,7 +2,7 @@ import '../../../src/client/event/refresh'
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
 import fetchImg from '../../../src/client/puzzle/fetchImg'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect from 'expect'
 
 import fakeFetch from '../fakeFetch'

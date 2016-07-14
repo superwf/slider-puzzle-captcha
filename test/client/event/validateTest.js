@@ -1,7 +1,7 @@
 import initDomTree from '../../../src/client/initDomTree'
 import insertImg from '../../../src/client/puzzle/insertImg'
 import cache from '../../../src/client/cache'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect, {spyOn} from 'expect'
 
 describe('event', () => {
@@ -30,7 +30,6 @@ describe('event', () => {
     expect(emitter.emit.calls[2].arguments).toInclude('notify')
 
     setTimeout(() => {
-      expect(emitter.emit.calls[3].arguments).toInclude('notify:hide')
       expect.restoreSpies()
       emitter.off('validate:success')
       done()

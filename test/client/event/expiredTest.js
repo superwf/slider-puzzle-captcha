@@ -1,7 +1,7 @@
 import '../../../src/client/event/expired'
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect, {spyOn} from 'expect'
 
 describe('event', () => {
@@ -17,5 +17,6 @@ describe('event', () => {
     expect(emitter.emit.calls[3].arguments).toInclude('refresh')
 
     expect.restoreSpies()
+    emitter.off('token:expired')
   })
 })

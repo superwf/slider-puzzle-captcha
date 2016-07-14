@@ -1,5 +1,5 @@
 import cache from '../cache'
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 
 import insertImg from '../puzzle/insertImg'
 import fetchImg from '../puzzle/fetchImg'

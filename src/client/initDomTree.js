@@ -7,6 +7,7 @@ const init = root => {
   if (root.querySelector('.image-container')) {
     return false
   }
+  root.classList.add('slider-puzzle')
 
   root.setAttribute('tabeindex', '-1')
   const appendByClass = (className, parentNode = root) => {

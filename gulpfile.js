@@ -1,3 +1,4 @@
 require('babel-register')
-require('./tasks/index')
+require('./tasks/dev')
+require('./tasks/dist')
 require('./tasks/pngmin')

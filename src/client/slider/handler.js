@@ -1,7 +1,7 @@
 import eventName from '../eventName'
 import cache from '../cache'
 import config from '../../config'
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 import {listen, remove, clientX, updateClass} from '../dom'
 import validate from './validate'
 
@@ -84,7 +84,7 @@ let offHover = () => {
   if (eventName.touch) {
     hide()
   } else {
-    fadeTick = setTimeout(hide, 2000)
+    fadeTick = setTimeout(hide, 1500)
   }
 }
 export {onHover, offHover, startFunc}

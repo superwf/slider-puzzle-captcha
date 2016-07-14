@@ -1,9 +1,10 @@
 import config from '../../config'
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 
-const validate = async function(post = {token: '', x: ''}) {
+const validate = function(post = {token: '', x: ''}) {
 
-  let result = await window.fetch(config.api.validate, {
+  const {api} = config
+  return window.fetch(api.validate, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -23,6 +24,5 @@ const validate = async function(post = {token: '', x: ''}) {
     console.log(`fetch ${api.validate} err `, err)
     emitter.emit('server:error')
   })
-  return result
 }
 export default validate

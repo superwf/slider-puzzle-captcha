@@ -1,4 +1,8 @@
-const touch = 'ontouchstart' in window
+let touch = false
+if (typeof window === 'undefined') {
+  window = {}
+}
+touch = 'ontouchstart' in window
 
 // 根据当前浏览器环境获取事件名称
 const evt = {

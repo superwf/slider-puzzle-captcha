@@ -1,4 +1,4 @@
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 
 emitter.on('token:expired', () => {
   emitter.emit('disable')

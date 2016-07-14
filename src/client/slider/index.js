@@ -1,6 +1,6 @@
 import eventName from '../eventName'
-import emitter from '../../lib/emitter'
-import {listen, hover} from '../dom'
+import emitter from '../emitter'
+import {listen, hover, remove} from '../dom'
 
 import cache from '../cache'
 
@@ -9,13 +9,22 @@ import {onHover, offHover, startFunc} from './handler'
 
 // slider中绑定事件
 const slider = () => {
-  const {root, refresh} = cache
+  const {root, refresh, slider} = cache
   hover(root, onHover, offHover)
-  listen(cache.slider, eventName.start, startFunc)
-  listen(refresh, eventName.start, () => {
+  listen(slider, eventName.start, startFunc)
+
+  const refreshFunc = () => {
     emitter.emit('refresh')
-  })
-  cache.set({enable: true})
+  }
+  listen(refresh, eventName.start, refreshFunc)
+  const removeSlider = () => {
+    remove(slider, eventName.start, startFunc)
+    remove(refresh, eventName.start, refreshFunc)
+  }
+
+  removeSlider.cache = cache
+  removeSlider.emitter = emitter
+  return removeSlider
 }
 
 export default slider

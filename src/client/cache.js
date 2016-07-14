@@ -21,6 +21,7 @@ cache.clear = () => {
     }
     delete cache[key]
   }
+  cache.enable = false
 }
 
 export default cache

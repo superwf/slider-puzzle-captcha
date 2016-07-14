@@ -1,7 +1,7 @@
 import '../../../src/client/event/enable'
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect, {spyOn} from 'expect'
 
 describe('event', () => {

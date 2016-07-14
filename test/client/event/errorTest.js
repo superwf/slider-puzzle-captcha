@@ -1,7 +1,7 @@
 import '../../../src/client/event/error'
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect, {spyOn} from 'expect'
 
 describe('event', () => {
@@ -20,6 +20,7 @@ describe('event', () => {
     expect(cache.tip.classList.contains('fail')).toBeFalsy()
 
     expect(emitter.emit.calls[1].arguments).toInclude('notify')
+    emitter.off('server:error')
     expect.restoreSpies()
   })
 })

@@ -1,6 +1,5 @@
-import 'isomorphic-fetch'
 import config from '../../config'
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 
 const {api} = config
 
@@ -21,7 +20,7 @@ const fetchImg = () => {
       }
       throw data
     }, err => console.log('in fetchImg, json err ' + err))
-  }, err => {
+  }, () => {
     emitter.emit('server:error')
   })
 }

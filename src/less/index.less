@@ -20,40 +20,16 @@
 @containerBorder: 1px solid #d1bba8;
 
 // body 中的样式都是开发用的，实际生产中不用
-body {
-  // overflow: hidden;
-  form {
-    display: block;
-    margin: 100px auto;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    padding: 10px;
-    width: @bgWidth + 150px;
-    .form-group {
-      text-align: center;
-      padding: 10px 0;
-      label {
-        display: inline-block;
-        text-align: left;
-        width: 30%;
-      }
-      input {
-        width: 60%;
-      }
-      &:after {
-        content: '';
-        display: table;
-      }
-    }
-  }
-}
 
 .slider-puzzle {
   width: @containerWith;
   height: 30px;
+  text-align: left;
   position: relative;
   @import "track.less";
   user-select: none;
+  margin-left: auto;
+  margin-right: auto;
   &:focus {
     outline: none;
   }

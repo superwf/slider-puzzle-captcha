@@ -1,0 +1,31 @@
+@import "varible.less";
+body {
+  h2 {
+    text-align: center;
+  }
+  form {
+    display: block;
+    margin: 100px auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 20px;
+    width: @bgWidth + 150px;
+    .form-group {
+      text-align: center;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      label {
+        display: inline-block;
+        text-align: left;
+        width: 30%;
+      }
+      input {
+        width: 60%;
+      }
+      &:after {
+        content: '';
+        display: table;
+      }
+    }
+  }
+}

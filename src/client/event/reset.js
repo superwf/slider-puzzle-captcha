@@ -1,5 +1,5 @@
 import cache from '../cache'
-import emitter from '../../lib/emitter'
+import emitter from '../emitter'
 import {updateClass} from '../dom'
 
 emitter.on('reset', () => {
@@ -22,9 +22,6 @@ emitter.on('reset', () => {
         clearInterval(tick)
         updateClass(puzzle, ['animated', 'flash'], 'remove')
         emitter.emit('enable')
-        setTimeout(() => {
-          emitter.emit('notify:hide')
-        }, 1500)
         updateClass(cache.root, 'ok', 'remove')
         updateClass(cache.tip, 'ok', 'remove')
       }

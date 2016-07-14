@@ -1,7 +1,7 @@
 import initDomTree from '../../../src/client/initDomTree'
 import cache from '../../../src/client/cache'
 import insertImg from '../../../src/client/puzzle/insertImg'
-import emitter from '../../../src/lib/emitter'
+import emitter from '../../../src/client/emitter'
 import expect, {spyOn} from 'expect'
 
 describe('event', function() {
@@ -51,12 +51,8 @@ describe('event', function() {
 
       document.body.removeChild(div)
       emitter.off('reset')
-
-      setTimeout(() => {
-        expect(emitter.emit.calls[3].arguments).toInclude('notify:hide')
-        expect.restoreSpies()
-        done()
-      }, 1500)
+      expect.restoreSpies()
+      done()
     }, 600)
 
   })

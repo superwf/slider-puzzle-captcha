@@ -34,6 +34,7 @@ const insertImg = (root, data) => {
   }
   ['bg', 'puzzle-bg', 'puzzle'].forEach(insert)
   result.token = data.token
+  result.enable = true
 
   cache.set(result)
 
