@@ -14,7 +14,7 @@ export default {
   port: 3010,
 
   // 存储每次生成的验证信息的方式
-  store: 'redis',
+  store: 'memory',
   // more config, go https://www.npmjs.com/package/redis
   redisConfig: {
     host: '127.0.0.1',

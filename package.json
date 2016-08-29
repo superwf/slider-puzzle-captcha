@@ -13,7 +13,7 @@
     "src"
   ],
   "scripts": {
-    "start": "gulp",
+    "start": "[ ! -d public ] && mkdir public;gulp",
     "test": "cross-env BABEL_ENV=commonjs mocha test/server --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "test:client": "cross-env NODE_ENV=test karma start",
